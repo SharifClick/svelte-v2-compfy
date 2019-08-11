@@ -13,5 +13,19 @@
 	},
 	"categories": [
 		"Other"
-	]
+	],
+	"activationEvents": [
+		"onCommand:extension.compfy"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.compfy",
+				"title": "Svelte Compfy"
+			}
+		]
+	},
+
+	"devDependencies": {}
 }
