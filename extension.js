@@ -14,8 +14,11 @@ const path = require('path');
 
 
 function activate(context) {
-  let compfyCleanup = null;
-	
+
+	let compfyCleanup = vscode.commands.registerCommand('extension.compfyCleanup', function () {
+    
+
+	});
 
 	context.subscriptions.push(compfyCleanup);
 }
