@@ -1,10 +1,9 @@
 {
-	"name": "",
-	"displayName": "",
-	"publisher": "",
-	"description": "",
-	"repository": "",
+	"name": "svelte-v2-compfy",
+	"displayName": "Svelte V2 Compfy",
 	"version": "0.0.1",
+	"publisher": "SharifClick",
+	"description": "Cleanup unused component entries from working file",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
