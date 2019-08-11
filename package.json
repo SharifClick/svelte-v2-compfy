@@ -1,0 +1,14 @@
+{
+	"name": "",
+	"displayName": "",
+	"publisher": "",
+	"description": "",
+	"repository": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other"
+	]
+}
