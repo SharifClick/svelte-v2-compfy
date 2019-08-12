@@ -25,6 +25,7 @@ function activate(context) {
 			let word = document.getText(selection);
 
 			var pat = /components:\s*{(\s+[\w,\s]+)}/gm;
+			var matches = pat.exec(word);
 
 		}
 
