@@ -21,11 +21,10 @@ function activate(context) {
 			let document = editor.document;
 			let selection = editor.selection;
 
-			// Get the word within the selection
-			let word = document.getText(selection);
+			let contents = document.getText(selection);
 
 			var pat = /components:\s*{(\s+[\w,\s]+)}/gm;
-			var matches = pat.exec(word);
+			var matches = pat.exec(contents);
 			var metaString = matches[0].replace(pat, '$1');
 			var explodedMeta = metaString.split(',').map(v => v.trim());
 			
