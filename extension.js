@@ -18,14 +18,13 @@ function activate(context) {
 		let editor = vscode.window.activeTextEditor;
 
 		if(editor){
-			let document = editor.document;
-			let selection = editor.selection;
+			let {document, selection} = editor;
 
 			let contents = document.getText(selection);
 
 			var pat = /components:\s*{(\s+[\w,\s]+)}/gm;
-			var matches = pat.exec(contents);
-			var metaString = matches[0].replace(pat, '$1');
+			var [match] = pat.exec(contents);
+			var metaString = match.replace(pat, '$1');
 			var explodedMeta = metaString.split(',').map(v => v.trim());
 			
 
