@@ -26,6 +26,14 @@ function activate(context) {
 			var [match] = pat.exec(contents);
 			var metaString = match.replace(pat, '$1');
 			var explodedMeta = metaString.split(',').map(v => v.trim());
+
+			var result = contents;
+
+			explodedMeta.forEach(element => {
+				if(contents.indexOf(`<${element}`) == -1){
+					vscode.window.showInformationMessage(`<${element}/> not found`)	
+				}
+			});
 			
 
 		}
