@@ -18,7 +18,12 @@ function activate(context) {
 		let editor = vscode.window.activeTextEditor;
 
 		if(editor){
-			
+			let document = editor.document;
+			let selection = editor.selection;
+
+			// Get the word within the selection
+			let word = document.getText(selection);
+
 		}
 
 	});
