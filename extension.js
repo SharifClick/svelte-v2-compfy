@@ -24,6 +24,8 @@ function activate(context) {
 			// Get the word within the selection
 			let word = document.getText(selection);
 
+			var pat = /components:\s*{(\s+[\w,\s]+)}/gm;
+
 		}
 
 	});
