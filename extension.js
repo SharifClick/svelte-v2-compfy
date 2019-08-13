@@ -25,7 +25,7 @@ function activate(context) {
 			var pat = /components:\s*{(\s+[\w:\'\.\/,\s]+)}/gm;
 			var [match] = pat.exec(contents);
 			var metaString = match.replace(pat, '$1');
-			var explodedMeta = metaString.split(',').map(v => v.trim());
+			var explodedMeta = metaString.split(',').map(v => v.split(':')[0]);
 
 			var result = contents;
 
