@@ -22,7 +22,7 @@ function activate(context) {
 
 			let contents = document.getText(selection);
 
-			var pat = /components:\s*{(\s+[\w,\s]+)}/gm;
+			var pat = /components:\s*{(\s+[\w:\'\.\/,\s]+)}/gm;
 			var [match] = pat.exec(contents);
 			var metaString = match.replace(pat, '$1');
 			var explodedMeta = metaString.split(',').map(v => v.trim());
