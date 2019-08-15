@@ -13,7 +13,7 @@ const vscode = require('vscode');
 
 function activate(context) {
 
-	let compfyCleanup = vscode.commands.registerCommand('extension.compfyCleanup', function () {
+	let compfyCleanup = vscode.commands.registerCommand('extension.removeUnusedCompEntries', function () {
 		
 		let editor = vscode.window.activeTextEditor;
 

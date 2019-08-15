@@ -15,13 +15,13 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.compfyCleanup"
+		"onCommand:extension.removeUnusedCompEntries"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.compfyCleanup",
+				"command": "extension.removeUnusedCompEntries",
 				"title": "Svelte Compfy"
 			}
 		]
