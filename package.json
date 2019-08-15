@@ -22,7 +22,7 @@
 		"commands": [
 			{
 				"command": "extension.removeUnusedCompEntries",
-				"title": "Svelte Compfy"
+				"title": "Svelte: Remove unused component entries"
 			}
 		]
 	},
