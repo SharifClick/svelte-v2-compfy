@@ -18,9 +18,9 @@ function activate(context) {
 		let editor = vscode.window.activeTextEditor;
 
 		if(editor){
-			let {document, selection} = editor;
+			let {document} = editor;
 
-			let contents = document.getText(selection);
+			let contents = document.getText();
 
 			var pat = /components:\s*{(\s+[\w:\'\.\/,\s]+)}/gm;
 			var [match] = pat.exec(contents);
