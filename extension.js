@@ -27,8 +27,9 @@ function activate(context) {
 			var metaString = match.replace(pat, '$1');
 			var explodedMeta = metaString.split(',').map(v => v.split(':')[0].trim());
 
-			let range = new vscode.Range(0, 0, document.lineCount, 0);
-
+			let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
+			let validRange = document.validateRange(invalidRange);
+			
 			var result = contents;
 
 			explodedMeta.forEach(element => {
