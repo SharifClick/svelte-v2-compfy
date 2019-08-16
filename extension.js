@@ -41,16 +41,14 @@ function activate(context) {
 				}
 			});
 			
-			let r =  new RegExp(rPat, 'g');
-			result = result.replace(r, '');
+			msg += ' is removed';
 			
-			msg += `<${element}/> is unused \n` 
-			vscode.window.showInformationMessage(`<${element}/> not found`)	
+			vscode.window.showInformationMessage(msg)	
 		
 			let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
 			let validRange = document.validateRange(invalidRange);
 
-			editor.edit(edit => edit.replace(fullRange, word));
+			editor.edit(edit => edit.replace(validRange, result));
 
 		}
 
