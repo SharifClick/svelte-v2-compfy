@@ -52,8 +52,8 @@ function activate(context) {
       if(removedItems.length > 0){
         var msg = removedItems.join(',');
             msg += (removedItems.length > 1 ? ' are ' : ' is ') + 'removed.';
+          vscode.window.showInformationMessage(msg)	
       }
-      vscode.window.showInformationMessage(msg)	
 
 		}
 
