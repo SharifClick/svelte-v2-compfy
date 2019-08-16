@@ -22,7 +22,8 @@ function activate(context) {
 
       let contents = document.getText();
 
-      var pat = /components:\s*{(\s+[\w:\'\.\/,\s]+)}/gm;
+      // pattern for select and get components:{....} portion from contents
+      var pat = /components:\s*{(\s+[\w:\'\.\/,\s]+)}/gm;  
       var [match] = pat.exec(contents);
       var metaString = match.replace(pat, '$1');
       var explodedMeta = metaString.split(',').map(v => v.split(':')[0].trim());
@@ -34,6 +35,7 @@ function activate(context) {
 
       explodedMeta.forEach(element => {
         if (contents.indexOf(`<${element}`) == -1) {
+          // pattern for select and replace Component or Component, or ' import Component from '......' ' and also empty named import 'import {} from '.....' '
           let rPat = `\\b${element}\\b,?|\s*import\s*[^{]${element}[^}].+|\s*import\s*{[\s,]*}\s.*`;
           let r = new RegExp(rPat, 'g');
           result = result.replace(r, '');
@@ -43,7 +45,7 @@ function activate(context) {
 
 
 
-
+      //selecting range of text in current activeeditor to pass as eidtor callback
       let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
       let validRange = document.validateRange(invalidRange);
 
