@@ -37,6 +37,7 @@ function activate(context) {
 					let rPat = `\\b${element}\\b,? | import[^{]${element}[^}].+`;
 					let r =  new RegExp(rPat, 'g');
 					result = result.replace(r, '');
+					msg += `<${element}/> `;
 				}
 			});
 			
