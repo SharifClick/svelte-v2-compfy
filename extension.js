@@ -49,7 +49,10 @@ function activate(context) {
 
       editor.edit(edit => edit.replace(validRange, result));
       
-
+      if(removedItems.length > 0){
+        var msg = removedItems.join(',');
+            msg += (removedItems.length > 1 ? ' are ' : ' is ') + 'removed.';
+      }
       vscode.window.showInformationMessage(msg)	
 
 		}
