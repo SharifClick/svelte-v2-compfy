@@ -29,7 +29,7 @@ function activate(context) {
 
 			
 			var result = contents;
-			var msg = '';
+			var removedItems = [];
 			
 
 			explodedMeta.forEach(element => {
@@ -37,18 +37,20 @@ function activate(context) {
 					let rPat = `\\b${element}\\b,? | import[^{]${element}[^}].+`;
 					let r =  new RegExp(rPat, 'g');
 					result = result.replace(r, '');
-					msg += `<${element}/> `;
+					removedItems.push( `<${element}/> `);
 				}
 			});
 			
-			msg += ' is removed';
 			
-			vscode.window.showInformationMessage(msg)	
+		
 		
 			let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
 			let validRange = document.validateRange(invalidRange);
 
-			editor.edit(edit => edit.replace(validRange, result));
+      editor.edit(edit => edit.replace(validRange, result));
+      
+
+      vscode.window.showInformationMessage(msg)	
 
 		}
 
