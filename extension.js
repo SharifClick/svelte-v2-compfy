@@ -13,57 +13,57 @@ const vscode = require('vscode');
 
 function activate(context) {
 
-	let removeUnusedCompEntries = vscode.commands.registerCommand('extension.removeUnusedCompEntries', function () {
-		
-		let editor = vscode.window.activeTextEditor;
+  let removeUnusedCompEntries = vscode.commands.registerCommand('extension.removeUnusedCompEntries', function () {
 
-		if(editor){
-			let {document} = editor;
+    let editor = vscode.window.activeTextEditor;
 
-			let contents = document.getText();
+    if (editor) {
+      let { document } = editor;
 
-			var pat = /components:\s*{(\s+[\w:\'\.\/,\s]+)}/gm;
-			var [match] = pat.exec(contents);
-			var metaString = match.replace(pat, '$1');
-			var explodedMeta = metaString.split(',').map(v => v.split(':')[0].trim());
+      let contents = document.getText();
 
-			
-			var result = contents;
-			var removedItems = [];
-			
+      var pat = /components:\s*{(\s+[\w:\'\.\/,\s]+)}/gm;
+      var [match] = pat.exec(contents);
+      var metaString = match.replace(pat, '$1');
+      var explodedMeta = metaString.split(',').map(v => v.split(':')[0].trim());
 
-			explodedMeta.forEach(element => {
-				if(contents.indexOf(`<${element}`) == -1){
-					let rPat = `\\b${element}\\b,?|\s*import\s*[^{]${element}[^}].+|\s*import\s*{[\s,]*}\s.*`;
-					let r =  new RegExp(rPat, 'g');
-					result = result.replace(r, '');
-					removedItems.push( `<${element}/> `);
-				}
-			});
-			
-			
-		
-		
-			let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
-			let validRange = document.validateRange(invalidRange);
 
-			editor.edit(edit => edit.replace(validRange, result));
-			
-			if(removedItems.length > 0){
-				var msg = removedItems.join(',');
-					msg += (removedItems.length > 1 ? ' are ' : ' is ') + 'removed.';
-				vscode.window.showInformationMessage(msg)	
-			}
+      var result = contents;
+      var removedItems = [];
 
-			if(!document.isDirty){
-				document.save()	
-			}
 
-		}
+      explodedMeta.forEach(element => {
+        if (contents.indexOf(`<${element}`) == -1) {
+          let rPat = `\\b${element}\\b,?|\s*import\s*[^{]${element}[^}].+|\s*import\s*{[\s,]*}\s.*`;
+          let r = new RegExp(rPat, 'g');
+          result = result.replace(r, '');
+          removedItems.push(`<${element}/> `);
+        }
+      });
 
-	});
 
-	context.subscriptions.push(removeUnusedCompEntries);
+
+
+      let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
+      let validRange = document.validateRange(invalidRange);
+
+      editor.edit(edit => edit.replace(validRange, result));
+
+      if (removedItems.length > 0) {
+        var msg = removedItems.join(',');
+        msg += (removedItems.length > 1 ? ' are ' : ' is ') + 'removed.';
+        vscode.window.showInformationMessage(msg)
+      }
+
+      if (!document.isDirty) {
+        document.save()
+      }
+
+    }
+
+  });
+
+  context.subscriptions.push(removeUnusedCompEntries);
 }
 exports.activate = activate;
 
@@ -71,6 +71,6 @@ exports.activate = activate;
 function deactivate() { }
 
 module.exports = {
-	activate,
-	deactivate
+  activate,
+  deactivate
 }
