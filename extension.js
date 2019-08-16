@@ -27,10 +27,10 @@ function activate(context) {
 			var metaString = match.replace(pat, '$1');
 			var explodedMeta = metaString.split(',').map(v => v.split(':')[0].trim());
 
-			let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
-			let validRange = document.validateRange(invalidRange);
 			
 			var result = contents;
+			var msg = '';
+			
 
 			explodedMeta.forEach(element => {
 				if(contents.indexOf(`<${element}`) == -1){
@@ -38,6 +38,11 @@ function activate(context) {
 				}
 			});
 			
+
+			let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
+			let validRange = document.validateRange(invalidRange);
+
+			editor.edit(edit => edit.replace(fullRange, word));
 
 		}
 
