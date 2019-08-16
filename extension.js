@@ -34,7 +34,7 @@ function activate(context) {
 
 			explodedMeta.forEach(element => {
 				if(contents.indexOf(`<${element}`) == -1){
-					let rPat = `\\b${element}\\b,?`;
+					let rPat = `\\b${element}\\b,? | import[^{]${element}[^}].+`;
 					
 				}
 			});
