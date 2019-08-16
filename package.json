@@ -1,7 +1,7 @@
 {
 	"name": "svelte-v2-compfy",
 	"displayName": "Svelte V2 Compfy",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "SharifClick",
 	"description": "Cleanup unused component entries from working file",
 	"engines": {
