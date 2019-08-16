@@ -47,13 +47,17 @@ function activate(context) {
 			let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
 			let validRange = document.validateRange(invalidRange);
 
-      editor.edit(edit => edit.replace(validRange, result));
-      
-      if(removedItems.length > 0){
-        var msg = removedItems.join(',');
-            msg += (removedItems.length > 1 ? ' are ' : ' is ') + 'removed.';
-          vscode.window.showInformationMessage(msg)	
-      }
+			editor.edit(edit => edit.replace(validRange, result));
+			
+			if(removedItems.length > 0){
+				var msg = removedItems.join(',');
+					msg += (removedItems.length > 1 ? ' are ' : ' is ') + 'removed.';
+				vscode.window.showInformationMessage(msg)	
+			}
+
+			if(!document.isDirty){
+				document.save()	
+			}
 
 		}
 
