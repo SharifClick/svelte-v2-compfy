@@ -34,7 +34,7 @@ function activate(context) {
 
 			explodedMeta.forEach(element => {
 				if(contents.indexOf(`<${element}`) == -1){
-					let rPat = `\\b${element}\\b,? | import[^{]${element}[^}].+`;
+					let rPat = `\\b${element}\\b,?|\s*import\s*[^{]${element}[^}].+|\s*import\s*{[\s,]*}\s.*`;
 					let r =  new RegExp(rPat, 'g');
 					result = result.replace(r, '');
 					removedItems.push( `<${element}/> `);
