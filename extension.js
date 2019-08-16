@@ -34,11 +34,17 @@ function activate(context) {
 
 			explodedMeta.forEach(element => {
 				if(contents.indexOf(`<${element}`) == -1){
-					vscode.window.showInformationMessage(`<${element}/> not found`)	
+					let rPat = `\\b${element}\\b,?`;
+					
 				}
 			});
 			
-
+			let r =  new RegExp(rPat, 'g');
+			result = result.replace(r, '');
+			
+			msg += `<${element}/> is unused \n` 
+			vscode.window.showInformationMessage(`<${element}/> not found`)	
+		
 			let invalidRange = new vscode.Range(0, 0, document.lineCount, 0);
 			let validRange = document.validateRange(invalidRange);
 
