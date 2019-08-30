@@ -32,11 +32,15 @@ function activate(context) {
       var result = contents;
       var removedItems = [];
 
-
       explodedMeta.forEach(element => {
         if (contents.indexOf(`<${element}`) == -1) {
-          // pattern for select and replace Component or Component, or ' import Component from '......' ' and also empty named import 'import {} from '.....' '
-          let rPat = `\\b${element}\\b,?|\s*import\s*[^{]${element}[^}].+|\s*import\s*{[\s,]*}\s.*`;
+
+          // patterns
+          let cPat = `\\b${element}\\b,?`; //pattern for Component entry
+          let imPat = `\s*import\s*[^{]${element}[^}].+`; //pattern for component imports
+          let bimPat = `\s*import\s*{[\s,]*}\s.*`; //pattern for blank named imports
+          
+          let rPat = `||`;
           let r = new RegExp(rPat, 'g');
           result = result.replace(r, '');
           removedItems.push(`<${element}/> `);
