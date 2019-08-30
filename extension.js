@@ -36,7 +36,7 @@ function activate(context) {
         if (contents.indexOf(`<${element}`) == -1) {
 
           // patterns
-          let cPat = `\\b${element}\\b,?`; //pattern for Component entry
+          let cPat = `\\b${element}\\b[^:],?`; //pattern for Component entry
           let scPat = `\s*\\b${element}\\b:.*,?`; //pattern for shorthand Component entry
           let imPat = `\s*import\s*[^{]${element}[^}].+`; //pattern for component imports
           let bimPat = `\s*import\s*{[\s,]*}\s.*`; //pattern for blank named imports
