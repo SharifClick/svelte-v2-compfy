@@ -37,10 +37,11 @@ function activate(context) {
 
           // patterns
           let cPat = `\\b${element}\\b,?`; //pattern for Component entry
+          let scPat = `\s*\\b${element}\\b:.*,?`; //pattern for shorthand Component entry
           let imPat = `\s*import\s*[^{]${element}[^}].+`; //pattern for component imports
           let bimPat = `\s*import\s*{[\s,]*}\s.*`; //pattern for blank named imports
           
-          let rPat = `||`;
+          let rPat = `${cPat}|${scPat}|${imPat}|${bimPat}`;
           let r = new RegExp(rPat, 'g');
           result = result.replace(r, '');
           removedItems.push(`<${element}/> `);
